@@ -7,14 +7,20 @@ module.exports = {
     inline: true,
     port:3000
   },
-  loaders: [
-    {
-      test: /\.js?$/,
-      exclude: /(node_modules|bower_components)/,
-      loader: 'babel-loader',
-      query: {
-        presets: ['es2015']
-      }
-    }
-  ]
+  module: {
+    loaders: [
+      {
+        test: /\.js?$/,
+        exclude: /(node_modules|bower_components)/,
+        loader: 'babel-loader',
+        query: {
+          presets: ['react', 'es2015', 'stage-0']
+        }
+      },
+      {
+          test: /\.scss$/,
+          loaders: ['style', 'css', 'sass']
+        }
+    ]
+   }
 };
