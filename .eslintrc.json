@@ -1,0 +1,16 @@
+{
+    "plugins": [
+        "eslint-plugin-react"
+    ],
+    "env": {
+        "browser": true
+    },
+    "parserOptions": {
+        "ecmaVersion": 6,
+        "sourceType": "module"
+      },
+      "rules": {
+        "semi": 1,
+        "quotes": [1, "single"] 
+      }
+}
