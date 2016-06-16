@@ -15,7 +15,7 @@ export  function init() {
 
 	scene = new THREE.Scene();
 
-	camera = new THREE.PerspectiveCamera( 75, window.innerWidth / window.innerHeight, 1, 10000 );
+	camera = new THREE.PerspectiveCamera( 70, window.innerWidth / window.innerHeight, 1, 10000 );
 	camera.position.z = 1000;
 	camera.position.x= 1000;
 
@@ -28,7 +28,10 @@ export  function init() {
 	hexMesh = new THREE.Mesh(hexGeometry, hexMaterial);
 
 	var boxGeometry = new THREE.IcosahedronGeometry(200,4);
-	var boxMaterial = new THREE.MeshPhongMaterial({color: 0x002020});
+	var boxMaterial = new THREE.MeshPhongMaterial();
+	boxMaterial.map = THREE.ImageUtils.loadTexture('./static/textures/earthmap1k.jpg');
+	boxMaterial.bumpMap    = THREE.ImageUtils.loadTexture('./static/textures/earthbump1k.jpg');
+	boxMaterial.bumpScale = 0.05;
 	boxMesh = new THREE.Mesh( boxGeometry, boxMaterial );
 
 
@@ -63,8 +66,8 @@ export function animate() {
 
 	requestAnimationFrame( animate );
 
-	boxMesh.rotation.x += 0.003;
-	boxMesh.rotation.y += 0.010;
+	// boxMesh.rotation.x += 0.003;
+	boxMesh.rotation.y += 0.05/32;
 
 	hexMesh.rotation.x += -0.005;
 	hexMesh.rotation.y += -0.006;
