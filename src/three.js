@@ -1,7 +1,15 @@
-var THREE = require('three');
-var scene, camera, renderer;
-var geometry, material, mesh;
+import THREE from 'THREE';
 
+var scene, camera, renderer;
+var boxGeometry, boxMaterial, boxMesh;
+var hexGeometry, hexMaterial, hexMesh;
+var tetraGeometry, tetraMaterial, tetraMesh;
+
+
+
+function render() {
+	renderer.render( scene, camera );
+}
 
 export  function init() {
 
@@ -9,30 +17,66 @@ export  function init() {
 
 	camera = new THREE.PerspectiveCamera( 75, window.innerWidth / window.innerHeight, 1, 10000 );
 	camera.position.z = 1000;
+	camera.position.x= 1000;
 
-	geometry = new THREE.BoxGeometry( 400, 400, 200 );
-	material = new THREE.MeshBasicMaterial({
-		color: 0x2c63a4 ,
-		wireframe: true
+	var tetraGeometry = new THREE.TetrahedronGeometry(3000,2);
+	var tetraMaterial = new THREE.MeshLambertMaterial({color: 0xfcfa2b, wireframe: true});
+	tetraMesh = new THREE.Mesh(tetraGeometry, tetraMaterial);
+
+	var hexGeometry = new THREE.IcosahedronGeometry(400);
+	var hexMaterial = new THREE.MeshLambertMaterial({color: 0xfcfa2b, wireframe: true});
+	hexMesh = new THREE.Mesh(hexGeometry, hexMaterial);
+
+	var boxGeometry = new THREE.IcosahedronGeometry(200,4);
+	var boxMaterial = new THREE.MeshPhongMaterial({color: 0x002020});
+	boxMesh = new THREE.Mesh( boxGeometry, boxMaterial );
+
+
+	var ambientLight = new THREE.AmbientLight( 0x14fef7, 0.4 );
+
+	var light1= new THREE.DirectionalLight( 0x45babe, 1.88);
+	light1.position.set(200,100,200);
+
+
+	var light2= new THREE.DirectionalLight( 0x650000, 2.2);
+	light2.position.set(100,350,500);
+
+
+	scene.add(tetraMesh);
+	scene.add(hexMesh);
+	scene.add(boxMesh);
+	scene.add(ambientLight);
+	scene.add(light1);
+	scene.add(light2);
+
+	renderer = new THREE.WebGLRenderer({
+		alpha: true,
+		antialias: true
 	});
-
-	mesh = new THREE.Mesh( geometry, material );
-	scene.add( mesh );
-
-	renderer = new THREE.WebGLRenderer({alpha: true});
 	renderer.setSize( window.innerWidth, window.innerHeight - 4 );
 
 	document.getElementById('glcanvas').appendChild( renderer.domElement );
 
-}
+};
 
 export function animate() {
 
 	requestAnimationFrame( animate );
 
-	mesh.rotation.x += 0.001;
-	mesh.rotation.y += 0.009;
+	boxMesh.rotation.x += 0.003;
+	boxMesh.rotation.y += 0.010;
 
-	renderer.render( scene, camera );
+	hexMesh.rotation.x += -0.005;
+	hexMesh.rotation.y += -0.006;
 
-}
+	tetraMesh.rotation.y += -0.005;
+
+	render();
+
+};
+
+export function onResize() {
+	camera.aspect= window.innerWidth / window.innerHeight;
+	camera.updateProjectionMatrix();
+	renderer.setSize(window.innerWidth, window.innerHeight - 4 );
+};

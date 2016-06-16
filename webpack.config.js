@@ -1,11 +1,12 @@
+var path = require('path');
 module.exports = {
   entry: './src/app.js',
   output: {
     filename: 'bundle.js'
   },
   devServer: {
-    inline: true,
-    port:3000
+    inline:true,
+    port:3001
   },
   module: {
     loaders: [

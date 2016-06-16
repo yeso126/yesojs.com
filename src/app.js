@@ -1,5 +1,5 @@
 import React from 'react';
-import {init, animate} from './three.js';
+import {init, animate, onResize} from './three.js';
 import { render } from 'react-dom';
 import { Router, Route, Link, hashHistory } from 'react-router';
 
@@ -20,3 +20,4 @@ render((
 
 init();
 animate();
+window.addEventListener('resize', onResize, false);
