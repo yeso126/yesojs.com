@@ -1,4 +1,6 @@
+var autoprefixer = require('autoprefixer');
 var path = require('path');
+
 module.exports = {
   entry: './src/app.js',
   output: {
@@ -6,7 +8,7 @@ module.exports = {
   },
   devServer: {
     inline:true,
-    port:3001
+    port:3000
   },
   module: {
     loaders: [
@@ -20,8 +22,14 @@ module.exports = {
       },
       {
           test: /\.sass$/,
-          loaders: ['style', 'css', 'sass']
+          // loaders: ['style', 'css', 'sass', 'postcss']
+          loader: 'style-loader!css-loader!postcss-loader!sass-loader'
         }
     ]
-   }
+  },resolve: {
+    extensions: ['.js', '.sass','.scss','.jsx','.css', '']
+  },
+  postcss: [
+    autoprefixer({ browsers: ['last 2 versions'] })
+  ]
 };

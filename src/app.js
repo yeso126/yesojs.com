@@ -1,11 +1,11 @@
 import React from 'react';
 import {init, animate, onResize} from './three.js';
 import { render } from 'react-dom';
-import { Router, Route, Link, hashHistory, IndexRoute } from 'react-router';
+import { Router, Route, Link, browserHistory, IndexRoute } from 'react-router';
 
 
 // routes imports
-import Appbar from './routes/appbar.js';
+import Main from './routes/main.js';
 import Home from './routes/home.js';
 import About from './routes/about.js';
 import Contact from './routes/contact.js';
@@ -16,8 +16,8 @@ import './styles/app.sass';
 
 
 render((
-  <Router history={hashHistory}>
-    <Route path="/" component={Appbar}>
+  <Router history={browserHistory}>
+    <Route path="/" component={Main}>
       <IndexRoute component={Home}/>
       <Route path="/about" component={About}></Route>
       <Route path="/contact" component={Contact}></Route>

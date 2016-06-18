@@ -18,6 +18,7 @@ export  function init() {
 	camera = new THREE.PerspectiveCamera( 70, window.innerWidth / window.innerHeight, 1, 10000 );
 	camera.position.z = 1000;
 	camera.position.x= 1000;
+	camera.position.y= 20;
 
 	var tetraGeometry = new THREE.TetrahedronGeometry(3000,2);
 	var tetraMaterial = new THREE.MeshLambertMaterial({color: 0xfcfa2b, wireframe: true});
@@ -56,7 +57,7 @@ export  function init() {
 		alpha: true,
 		antialias: true
 	});
-	renderer.setSize( window.innerWidth, window.innerHeight - 4 );
+	renderer.setSize( window.innerWidth, window.innerHeight - 6 );
 
 	document.getElementById('glcanvas').appendChild( renderer.domElement );
 
@@ -74,6 +75,9 @@ export function animate() {
 
 	tetraMesh.rotation.y += -0.005;
 
+
+	// camera.position.x -= 1000/ 4000;
+
 	render();
 
 };
@@ -81,5 +85,5 @@ export function animate() {
 export function onResize() {
 	camera.aspect= window.innerWidth / window.innerHeight;
 	camera.updateProjectionMatrix();
-	renderer.setSize(window.innerWidth, window.innerHeight - 4 );
+	renderer.setSize(window.innerWidth, window.innerHeight - 6 );
 };

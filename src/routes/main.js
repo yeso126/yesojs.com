@@ -1,7 +1,8 @@
 import React from 'react';
+import EasyTransition from 'react-easy-transition';
 import {Link, IndexRoute} from 'react-router';
 
-var Appbar = React.createClass ({
+var Main = React.createClass ({
   render(){
     return (
       <div>
@@ -13,10 +14,17 @@ var Appbar = React.createClass ({
             <Link to="/contact">Contact</Link>
           </ul>
         </nav>
-        {this.props.children}
+        <EasyTransition
+          path={location.pathname}
+          initialStyle={{opacity: 0}}
+          transition="opacity 0.3s ease-in"
+          finalStyle={{opacity: 1}}
+          >
+          {this.props.children}
+      </EasyTransition>
      </div>
     );
   }
 });
 
-export default Appbar;
+export default Main;

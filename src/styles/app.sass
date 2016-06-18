@@ -1,26 +1,19 @@
 @import 'normalize'
-@import '/sass/navbar'
+@import '/routes/navbar'
+@import '/routes/home'
+@import 'typo'
 
 body
-  background-color: #242f34
+  background-color: #000000
   color: #30be4b
+  font-size: 16px
 
 canvas
   height:auto
   width: auto
 
 #glcanvas
-  position: absolute
+  position: fixed
   z-index: -1
   top: 0
   right: 0
-
-.home
-  height: 76vh
-  display: flex
-  justify-content: center
-  align-items: center
-
-.title
-  font-size: 2em
-  text-align: center
