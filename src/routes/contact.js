@@ -1,34 +1,37 @@
 import React from 'react';
+import email from '../secrets.js';
+import axios from 'axios';
 
- const contact = () => {
-  return (
-    <div className="home">
-      <h1 className="title">Contact</h1>
-
-        <div id="contact-area">
-
-          <form method="post" action="">
-            <label for="Name">Name:</label>
-            <input type="text" name="Name" id="Name" />
-
-            <label for="City">City:</label>
-            <input type="text" name="City" id="City" />
-
-            <label for="Email">Email:</label>
-            <input type="text" name="Email" id="Email" />
-
-            <label for="Message">Message:</label><br />
-            <textarea name="Message" rows="20" cols="20" id="Message"></textarea>
-
-            <input type="submit" name="submit" value="Submit" class="submit-button" />
+class contact extends React.Component{
+  constructor() {
+    super();
+    this.state= {
+      data: []
+    };
+}
+submit (e,email) {
+  e.preventDefault();
+  axios({
+    url: 'https://formspree.io/yeso126@hotmail.com',
+    method: 'POST',
+    data: {message: 'hello!'},
+    dataType: 'json'
+  });
+}
+  render () {
+    return(
+      <div className="page-container">
+        <div className="container">
+          <h1 className="title">Contact</h1>
+          <form>
+              <input type="text"/>
+              <input type="email"/>
+              <button onClick={this.submit}>Send</button>
           </form>
-
-          <div style={{clear: 'both'}}></div>
-
         </div>
-
-    </div>
-  );
+      </div>
+    );
+  };
 };
 
 export default contact;

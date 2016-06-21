@@ -2,6 +2,7 @@
 logs
 *.log
 npm-debug.log*
+secrets.js
 
 # Runtime data
 pids

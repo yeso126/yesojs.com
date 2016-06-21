@@ -8,7 +8,11 @@ module.exports = {
   },
   devServer: {
     inline:true,
+    historyApiFallback:true,
     port:3000
+  },
+  stats: {
+    colors: true
   },
   module: {
     loaders: [
@@ -17,8 +21,9 @@ module.exports = {
         exclude: /(node_modules|bower_components)/,
         loader: 'babel-loader',
         query: {
-          presets: ['react', 'es2015', 'stage-0']
-        }
+          presets: ['react', 'es2015', 'stage-0'],
+          plugins: ['transform-decorators-legacy']
+        },
       },
       {
           test: /\.sass$/,
