@@ -16,4 +16,4 @@ import React from 'react';
   );
 };
 
-export default home;
+export default home

@@ -14,7 +14,6 @@ import Posts from './routes/posts.js';
 // styles imports
 import './styles/app.sass';
 
-
 render((
   <Router history={browserHistory}>
     <Route path="/" component={Main}>
